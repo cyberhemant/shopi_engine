@@ -1,0 +1,22 @@
+{
+  "current": {
+    "color_background": "#F5F5F2",
+    "color_text": "#1A1A1A",
+    "color_surface": "#FFFFFF",
+    "color_border": "#D9D9D4",
+    "color_accent": "#4C5BFF",
+    "color_button_background": "#1A1A1A",
+    "color_button_label": "#FFFFFF",
+    "color_card_background": "#FFFFFF",
+    "color_card_border": "#E7E7E1",
+    "type_body_font": "helvetica_n4",
+    "type_heading_font": "helvetica_n7",
+    "type_body_scale": 100,
+    "type_heading_scale": 110,
+    "page_width": 1200,
+    "section_spacing": 80,
+    "content_padding": 24,
+    "button_radius": 999,
+    "card_radius": 18
+  }
+}

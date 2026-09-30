@@ -1,0 +1,169 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Shopi Engine",
+    "theme_version": "1.0.0",
+    "theme_author": "Shopi Engine"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Background",
+        "default": "#F5F5F2"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Text",
+        "default": "#1A1A1A"
+      },
+      {
+        "type": "color",
+        "id": "color_surface",
+        "label": "Surface",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "color_border",
+        "label": "Border",
+        "default": "#D9D9D4"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent",
+        "default": "#4C5BFF"
+      },
+      {
+        "type": "color",
+        "id": "color_button_background",
+        "label": "Button background",
+        "default": "#1A1A1A"
+      },
+      {
+        "type": "color",
+        "id": "color_button_label",
+        "label": "Button label",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "color_card_background",
+        "label": "Card background",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "color_card_border",
+        "label": "Card border",
+        "default": "#E7E7E1"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "type_body_font",
+        "label": "Body font",
+        "default": "helvetica_n4"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_heading_font",
+        "label": "Heading font",
+        "default": "helvetica_n7"
+      },
+      {
+        "type": "range",
+        "id": "type_body_scale",
+        "label": "Body text scale",
+        "min": 90,
+        "max": 130,
+        "step": 1,
+        "unit": "%",
+        "default": 100
+      },
+      {
+        "type": "range",
+        "id": "type_heading_scale",
+        "label": "Heading scale",
+        "min": 90,
+        "max": 180,
+        "step": 1,
+        "unit": "%",
+        "default": 110
+      }
+    ]
+  },
+  {
+    "name": "Layout",
+    "settings": [
+      {
+        "type": "range",
+        "id": "page_width",
+        "label": "Page width",
+        "min": 720,
+        "max": 1600,
+        "step": 10,
+        "unit": "px",
+        "default": 1200
+      },
+      {
+        "type": "range",
+        "id": "section_spacing",
+        "label": "Section spacing",
+        "min": 20,
+        "max": 160,
+        "step": 4,
+        "unit": "px",
+        "default": 80
+      },
+      {
+        "type": "range",
+        "id": "content_padding",
+        "label": "Content padding",
+        "min": 12,
+        "max": 80,
+        "step": 4,
+        "unit": "px",
+        "default": 24
+      }
+    ]
+  },
+  {
+    "name": "Buttons",
+    "settings": [
+      {
+        "type": "range",
+        "id": "button_radius",
+        "label": "Button radius",
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "unit": "px",
+        "default": 999
+      }
+    ]
+  },
+  {
+    "name": "Cards",
+    "settings": [
+      {
+        "type": "range",
+        "id": "card_radius",
+        "label": "Card radius",
+        "min": 0,
+        "max": 40,
+        "step": 1,
+        "unit": "px",
+        "default": 18
+      }
+    ]
+  }
+]

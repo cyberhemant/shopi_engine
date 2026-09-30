@@ -1,0 +1,14 @@
+{
+  "general": {
+    "accessibility": {
+      "skip_to_content": "Skip to content"
+    },
+    "shop": "Shop"
+  },
+  "sections": {
+    "main_index": {
+      "title": "Theme engine preview",
+      "summary": "The design token system is active and ready for merchant edits."
+    }
+  }
+}
