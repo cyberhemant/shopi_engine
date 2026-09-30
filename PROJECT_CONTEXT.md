@@ -53,7 +53,7 @@ Quality: WCAG AA, performance, theme editor support, theme check clean, app bloc
 - [x] Project initialized, baseline commit made
 - [x] Design token system
 - [x] Header and footer
-- [ ] Core sections
+- [x] Core sections
 - [ ] Product, collection, cart
 - [ ] Remaining templates
 - [ ] Accessibility, performance, localization

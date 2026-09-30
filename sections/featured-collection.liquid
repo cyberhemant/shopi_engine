@@ -1,0 +1,132 @@
+{% assign collection = section.settings.collection %}
+<section class="section featured-collection">
+  <div class="page-width">
+    {% if section.settings.heading != blank %}
+      <h2 class="section__heading featured-collection__heading">{{ section.settings.heading }}</h2>
+    {% endif %}
+
+    {% if collection != blank and collection.products_count > 0 %}
+      <div class="featured-collection__grid">
+        {% for product in collection.products limit: section.settings.products_to_show %}
+          <article class="card product-card">
+            <a href="{{ product.url }}" class="product-card__media">
+              {% if product.featured_image != blank %}
+                {{ product.featured_image | image_url: width: 800 | image_tag: widths: '320, 480, 640, 800', sizes: '(min-width: 768px) 25vw, 50vw', loading: 'lazy', alt: product.featured_image.alt | escape }}
+              {% endif %}
+            </a>
+
+            <div class="product-card__content">
+              <h3 class="product-card__title"><a href="{{ product.url }}">{{ product.title }}</a></h3>
+              <p class="product-card__price">{{ product.price | money }}</p>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="card featured-collection__empty">
+        <p>{{ 'sections.featured_collection.empty' | t }}</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Featured collection"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Products to show",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 4
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured collection"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+  .featured-collection__heading {
+    margin-bottom: 1.5rem;
+  }
+
+  .featured-collection__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .product-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .product-card__media {
+    display: block;
+    background: var(--color-card-background);
+  }
+
+  .product-card__media img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+
+  .product-card__content {
+    display: grid;
+    gap: 0.4rem;
+    padding: 1rem 1rem 1.25rem;
+  }
+
+  .product-card__title {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .product-card__title a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .product-card__price {
+    margin: 0;
+    color: var(--color-text);
+    opacity: 0.8;
+  }
+
+  .featured-collection__empty {
+    text-align: center;
+  }
+
+  @media screen and (max-width: 767px) {
+    .featured-collection__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (max-width: 479px) {
+    .featured-collection__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+{% endstylesheet %}

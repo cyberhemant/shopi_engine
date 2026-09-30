@@ -1,9 +1,28 @@
 {
   "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "eyebrow": "New season",
+        "heading": "Modern essentials for everyday living",
+        "text": "Bring thoughtful design into your daily routine with timeless pieces built to last.",
+        "button_label": "Shop now",
+        "button_link": "/collections/all",
+        "secondary_button_label": "Explore lookbook",
+        "secondary_button_link": "/collections/all"
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "heading": "Featured collection",
+        "products_to_show": 4
+      }
+    },
     "main_index": {
       "type": "main-index",
       "settings": {}
     }
   },
-  "order": ["main_index"]
+  "order": ["hero", "featured_collection", "main_index"]
 }

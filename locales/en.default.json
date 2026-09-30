@@ -9,6 +9,9 @@
     "main_index": {
       "title": "Theme engine preview",
       "summary": "The design token system is active and ready for merchant edits."
+    },
+    "featured_collection": {
+      "empty": "Add a collection to show featured products."
     }
   }
 }
