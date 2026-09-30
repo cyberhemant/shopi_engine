@@ -5,6 +5,29 @@
     },
     "shop": "Shop"
   },
+  "products": {
+    "product": {
+      "variant": "Variant",
+      "quantity": "Quantity",
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out"
+    }
+  },
+  "collections": {
+    "general": {
+      "empty": "This collection has no products yet."
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Shopping cart",
+      "empty": "Your cart is empty.",
+      "continue_shopping": "Continue shopping",
+      "subtotal": "Subtotal",
+      "update": "Update cart",
+      "checkout": "Checkout"
+    }
+  },
   "sections": {
     "main_index": {
       "title": "Theme engine preview",

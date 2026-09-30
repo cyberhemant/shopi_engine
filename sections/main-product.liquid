@@ -1,0 +1,146 @@
+{% assign current_variant = product.selected_or_first_available_variant %}
+
+<section class="section product-page">
+  <div class="page-width product-page__grid">
+    <div class="product-page__media">
+      {% if product.featured_image != blank %}
+        {{ product.featured_image | image_url: width: 1200 | image_tag: widths: '320, 480, 640, 800, 1000, 1200', sizes: '(min-width: 768px) 50vw, 100vw', loading: 'eager', alt: product.featured_image.alt | escape }}
+      {% elsif product.media.size > 0 %}
+        {{ product.media.first | image_url: width: 1200 | image_tag: widths: '320, 480, 640, 800, 1000, 1200', sizes: '(min-width: 768px) 50vw, 100vw', loading: 'eager', alt: product.title | escape }}
+      {% endif %}
+    </div>
+
+    <div class="product-page__details">
+      {% if product.vendor != blank %}
+        <p class="section__eyebrow">{{ product.vendor }}</p>
+      {% endif %}
+
+      <h1 class="section__heading product-page__title">{{ product.title }}</h1>
+      <p class="product-page__price">{{ current_variant.price | money }}</p>
+
+      {% if product.description != blank %}
+        <div class="product-page__description rte">
+          {{ product.description }}
+        </div>
+      {% endif %}
+
+      {% form 'product', product, class: 'product-form' %}
+        <div class="product-form__field">
+          <label for="variant-select">{{ 'products.product.variant' | t }}</label>
+          <select id="variant-select" name="id" class="product-form__select">
+            {% for variant in product.variants %}
+              <option
+                value="{{ variant.id }}"
+                {% if variant.id == current_variant.id %}selected{% endif %}
+                {% unless variant.available %}disabled{% endunless %}
+              >
+                {{ variant.title }}{% unless variant.available %} — {{ 'products.product.sold_out' | t }}{% endunless %}
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="product-form__field product-form__field--row">
+          <label for="quantity">{{ 'products.product.quantity' | t }}</label>
+          <input id="quantity" type="number" name="quantity" value="1" min="1" class="product-form__quantity">
+        </div>
+
+        <button type="submit" class="button" {% unless current_variant.available %}disabled{% endunless %}>
+          {% if current_variant.available %}
+            {{ 'products.product.add_to_cart' | t }}
+          {% else %}
+            {{ 'products.product.sold_out' | t }}
+          {% endif %}
+        </button>
+      {% endform %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main product",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Main product"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+  .product-page__grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: clamp(1.5rem, 4vw, 4rem);
+    align-items: start;
+  }
+
+  .product-page__media {
+    overflow: hidden;
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius-card);
+    background: var(--color-card-background);
+  }
+
+  .product-page__media img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+
+  .product-page__details {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .product-page__title {
+    margin: 0;
+  }
+
+  .product-page__price {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .product-form {
+    display: grid;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .product-form__field {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .product-form__field--row {
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    max-width: 180px;
+  }
+
+  .product-form__select,
+  .product-form__quantity {
+    width: 100%;
+    min-height: 46px;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-button);
+    background: var(--color-surface);
+    color: var(--color-text);
+  }
+
+  .product-page__description {
+    color: var(--color-text);
+    opacity: 0.85;
+  }
+
+  @media screen and (max-width: 767px) {
+    .product-page__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+{% endstylesheet %}

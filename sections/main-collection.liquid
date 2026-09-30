@@ -1,0 +1,79 @@
+<section class="section collection-page">
+  <div class="page-width">
+    <header class="collection-page__header">
+      <h1 class="section__heading">{{ collection.title }}</h1>
+      {% if collection.description != blank %}
+        <p class="collection-page__description">{{ collection.description }}</p>
+      {% endif %}
+    </header>
+
+    {% if collection.products_count > 0 %}
+      <div class="collection-page__grid">
+        {% for product in collection.products %}
+          <article class="card product-card">
+            <a href="{{ product.url }}" class="product-card__media">
+              {% if product.featured_image != blank %}
+                {{ product.featured_image | image_url: width: 800 | image_tag: widths: '320, 480, 640, 800', sizes: '(min-width: 768px) 25vw, 50vw', loading: 'lazy', alt: product.featured_image.alt | escape }}
+              {% endif %}
+            </a>
+
+            <div class="product-card__content">
+              <h2 class="product-card__title"><a href="{{ product.url }}">{{ product.title }}</a></h2>
+              <p class="product-card__price">{{ product.price | money }}</p>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="card collection-page__empty">
+        <p>{{ 'collections.general.empty' | t }}</p>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main collection",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Main collection"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+  .collection-page__header {
+    margin-bottom: 2rem;
+  }
+
+  .collection-page__description {
+    max-width: 42rem;
+    margin: 0;
+    opacity: 0.8;
+  }
+
+  .collection-page__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .collection-page__empty {
+    text-align: center;
+  }
+
+  @media screen and (max-width: 767px) {
+    .collection-page__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (max-width: 479px) {
+    .collection-page__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+{% endstylesheet %}
