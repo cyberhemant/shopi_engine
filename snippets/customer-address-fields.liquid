@@ -1,0 +1,47 @@
+{%- liquid
+  assign address = address | default: customer.new_address
+  assign form_id = form_id | default: 'Address'
+-%}
+
+<div class="customer-form__field">
+  <label for="{{ form_id }}FirstName">{{ 'customer.addresses.first_name' | t }}</label>
+  <input id="{{ form_id }}FirstName" type="text" name="address[first_name]" value="{{ address.first_name | escape }}" autocomplete="given-name">
+</div>
+<div class="customer-form__field">
+  <label for="{{ form_id }}LastName">{{ 'customer.addresses.last_name' | t }}</label>
+  <input id="{{ form_id }}LastName" type="text" name="address[last_name]" value="{{ address.last_name | escape }}" autocomplete="family-name">
+</div>
+<div class="customer-form__field">
+  <label for="{{ form_id }}Company">{{ 'customer.addresses.company' | t }}</label>
+  <input id="{{ form_id }}Company" type="text" name="address[company]" value="{{ address.company | escape }}" autocomplete="organization">
+</div>
+<div class="customer-form__field">
+  <label for="{{ form_id }}Address1">{{ 'customer.addresses.address1' | t }}</label>
+  <input id="{{ form_id }}Address1" type="text" name="address[address1]" value="{{ address.address1 | escape }}" autocomplete="address-line1" required>
+</div>
+<div class="customer-form__field">
+  <label for="{{ form_id }}Address2">{{ 'customer.addresses.address2' | t }}</label>
+  <input id="{{ form_id }}Address2" type="text" name="address[address2]" value="{{ address.address2 | escape }}" autocomplete="address-line2">
+</div>
+<div class="customer-form__field">
+  <label for="{{ form_id }}City">{{ 'customer.addresses.city' | t }}</label>
+  <input id="{{ form_id }}City" type="text" name="address[city]" value="{{ address.city | escape }}" autocomplete="address-level2" required>
+</div>
+<div class="customer-form__field">
+  <label for="{{ form_id }}Country">{{ 'customer.addresses.country' | t }}</label>
+  <select id="{{ form_id }}Country" name="address[country]" autocomplete="country-name">
+    {{ all_country_option_tags }}
+  </select>
+</div>
+<div class="customer-form__field">
+  <label for="{{ form_id }}Province">{{ 'customer.addresses.province' | t }}</label>
+  <input id="{{ form_id }}Province" type="text" name="address[province]" value="{{ address.province | escape }}" autocomplete="address-level1">
+</div>
+<div class="customer-form__field">
+  <label for="{{ form_id }}Zip">{{ 'customer.addresses.zip' | t }}</label>
+  <input id="{{ form_id }}Zip" type="text" name="address[zip]" value="{{ address.zip | escape }}" autocomplete="postal-code" required>
+</div>
+<div class="customer-form__field">
+  <label for="{{ form_id }}Phone">{{ 'customer.addresses.phone' | t }}</label>
+  <input id="{{ form_id }}Phone" type="tel" name="address[phone]" value="{{ address.phone | escape }}" autocomplete="tel">
+</div>

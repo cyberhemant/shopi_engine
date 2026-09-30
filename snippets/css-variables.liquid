@@ -1,9 +1,10 @@
 {%- liquid
   assign body_font = settings.type_body_font
   assign heading_font = settings.type_heading_font
--%}
+%}
 
-:root {
+<style>
+  :root {
   --color-background: {{ settings.color_background }};
   --color-text: {{ settings.color_text }};
   --color-surface: {{ settings.color_surface }};
@@ -23,5 +24,6 @@
   --space-content: {{ settings.content_padding }}px;
   --page-width: {{ settings.page_width }}px;
   --radius-button: {{ settings.button_radius }}px;
-  --radius-card: {{ settings.card_radius }}px;
-}
+    --radius-card: {{ settings.card_radius }}px;
+  }
+</style>

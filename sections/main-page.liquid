@@ -1,0 +1,34 @@
+<section class="section page-section">
+  <div class="page-width page-section__content">
+    <h1 class="section__heading">{{ page.title | escape }}</h1>
+    <div class="page-section__body rte">
+      {{ page.content }}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main page",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Main page"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+  .page-section__content {
+    max-width: min(var(--page-width), 52rem);
+  }
+
+  .page-section__body {
+    color: var(--color-text);
+  }
+
+  .page-section__body a {
+    color: var(--color-accent);
+  }
+{% endstylesheet %}

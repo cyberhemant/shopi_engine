@@ -55,5 +55,7 @@ Quality: WCAG AA, performance, theme editor support, theme check clean, app bloc
 - [x] Header and footer
 - [x] Core sections
 - [x] Product, collection, cart
-- [ ] Remaining templates
+- [x] Shopify Theme Check: no offenses
+- [x] Search, page, blog, article, collection list, and 404 templates
+- [x] Password and customer account templates
 - [ ] Accessibility, performance, localization

@@ -30,7 +30,7 @@
     {% else %}
       <div class="card cart-page__empty">
         <p>{{ 'cart.general.empty' | t }}</p>
-        <a class="button" href="/collections/all">{{ 'cart.general.continue_shopping' | t }}</a>
+        <a class="button" href="{{ routes.all_products_collection_url }}">{{ 'cart.general.continue_shopping' | t }}</a>
       </div>
     {% endif %}
   </div>

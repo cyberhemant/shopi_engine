@@ -1,0 +1,121 @@
+<section class="section customer-page">
+  <div class="page-width">
+    <header class="customer-account__header">
+      <h1 class="section__heading">{{ 'customer.account.title' | t }}</h1>
+      <p>{{ customer.name | escape }}</p>
+      <nav class="customer-account__nav" aria-label="{{ 'customer.account.title' | t }}">
+        <a href="{{ routes.account_addresses_url }}">{{ 'customer.account.addresses' | t }}</a>
+        <a href="{{ routes.account_logout_url }}">{{ 'customer.account.sign_out' | t }}</a>
+      </nav>
+    </header>
+
+    <h2 class="customer-account__subheading">{{ 'customer.account.orders' | t }}</h2>
+    {% if customer.orders_count > 0 %}
+      {% paginate customer.orders by 10 %}
+        <div class="customer-table-wrap">
+          <table class="customer-table">
+            <thead>
+              <tr>
+                <th scope="col">{{ 'customer.account.order' | t }}</th>
+                <th scope="col">{{ 'customer.account.date' | t }}</th>
+                <th scope="col">{{ 'customer.account.payment' | t }}</th>
+                <th scope="col">{{ 'customer.account.fulfillment' | t }}</th>
+                <th scope="col">{{ 'customer.account.total' | t }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for order in customer.orders %}
+                <tr>
+                  <td><a href="{{ order.customer_url }}">{{ order.name | escape }}</a></td>
+                  <td>{{ order.created_at | date: format: 'month_day_year' }}</td>
+                  <td>{{ order.financial_status_label }}</td>
+                  <td>{{ order.fulfillment_status_label }}</td>
+                  <td>{{ order.total_price | money }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+
+        {% if paginate.pages > 1 %}
+          <nav class="customer-account__pagination" aria-label="{{ 'customer.account.orders' | t }}">
+            {% if paginate.previous %}
+              <a href="{{ paginate.previous.url }}">{{ 'general.pagination.previous' | t }}</a>
+            {% endif %}
+            {% if paginate.next %}
+              <a href="{{ paginate.next.url }}">{{ 'general.pagination.next' | t }}</a>
+            {% endif %}
+          </nav>
+        {% endif %}
+      {% endpaginate %}
+    {% else %}
+      <p>{{ 'customer.account.no_orders' | t }}</p>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Customer account",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Customer account"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+  .customer-account__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .customer-account__header .section__heading {
+    margin: 0;
+  }
+
+  .customer-account__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .customer-account__nav a,
+  .customer-table a {
+    color: var(--color-accent);
+  }
+
+  .customer-account__subheading {
+    color: var(--color-text);
+    font-family: var(--font-heading-family);
+  }
+
+  .customer-table-wrap {
+    overflow-x: auto;
+  }
+
+  .customer-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: var(--color-text);
+  }
+
+  .customer-table th,
+  .customer-table td {
+    padding: 0.85rem;
+    border-bottom: 1px solid var(--color-border);
+    text-align: left;
+  }
+
+  .customer-account__pagination {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+  }
+{% endstylesheet %}

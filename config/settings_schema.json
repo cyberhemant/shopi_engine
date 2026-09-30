@@ -3,7 +3,9 @@
     "name": "theme_info",
     "theme_name": "Shopi Engine",
     "theme_version": "1.0.0",
-    "theme_author": "Shopi Engine"
+    "theme_author": "Shopi Engine",
+    "theme_support_url": "https://github.com/cyberhemant/shopi_engine",
+    "theme_documentation_url": "https://github.com/cyberhemant/shopi_engine"
   },
   {
     "name": "Colors",
@@ -71,13 +73,13 @@
         "type": "font_picker",
         "id": "type_body_font",
         "label": "Body font",
-        "default": "helvetica_n4"
+        "default": "assistant_n4"
       },
       {
         "type": "font_picker",
         "id": "type_heading_font",
         "label": "Heading font",
-        "default": "helvetica_n7"
+        "default": "assistant_n7"
       },
       {
         "type": "range",
@@ -147,7 +149,7 @@
         "max": 30,
         "step": 1,
         "unit": "px",
-        "default": 999
+        "default": 12
       }
     ]
   },

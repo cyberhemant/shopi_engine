@@ -1,6 +1,6 @@
 <header class="header" {{ section.shopify_attributes }}>
   <div class="page-width header__inner">
-    <a class="header__brand" href="/" aria-label="{{ shop.name }} home">
+    <a class="header__brand" href="{{ routes.root_url }}" aria-label="{{ shop.name }} home">
       {{ section.settings.logo_text | default: shop.name }}
     </a>
 
@@ -17,7 +17,7 @@
     {% endif %}
 
     <div class="header__actions">
-      <a class="header__cart" href="/cart" aria-label="View cart">
+      <a class="header__cart" href="{{ routes.cart_url }}" aria-label="View cart">
         {{ 'general.shop' | t }}
       </a>
     </div>

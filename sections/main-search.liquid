@@ -1,0 +1,179 @@
+<section class="section search-page">
+  <div class="page-width">
+    <h1 class="section__heading">{{ 'sections.main_search.title' | t }}</h1>
+
+    <form action="{{ routes.search_url }}" method="get" role="search" class="search-page__form">
+      <label for="SearchQuery">{{ 'sections.main_search.label' | t }}</label>
+      <div class="search-page__controls">
+        <input
+          id="SearchQuery"
+          type="search"
+          name="q"
+          value="{{ search.terms | escape }}"
+          placeholder="{{ 'sections.main_search.placeholder' | t }}"
+          class="search-page__input"
+        >
+        <button type="submit" class="button">{{ 'sections.main_search.submit' | t }}</button>
+      </div>
+    </form>
+
+    {% if search.performed %}
+      {% if search.results_count > 0 %}
+        <h2 class="search-page__subheading">
+          {{ 'sections.main_search.results_for' | t: terms: search.terms }}
+        </h2>
+        {% paginate search.results by 12 %}
+          <p class="search-page__count">
+            {{ 'sections.main_search.result_count' | t: count: search.results_count }}
+          </p>
+          <div class="search-page__grid">
+            {% for result in search.results %}
+              <article class="card search-result">
+                {% if result.object_type == 'product' and result.featured_image != blank %}
+                  <a class="search-result__media" href="{{ result.url }}">
+                    {{ result.featured_image | image_url: width: 640 | image_tag: widths: '240, 400, 640', sizes: '(min-width: 768px) 25vw, 50vw', loading: 'lazy', alt: result.featured_image.alt | escape }}
+                  </a>
+                {% elsif result.object_type == 'article' and result.image != blank %}
+                  <a class="search-result__media" href="{{ result.url }}">
+                    {{ result.image | image_url: width: 640 | image_tag: widths: '240, 400, 640', sizes: '(min-width: 768px) 25vw, 50vw', loading: 'lazy', alt: result.image.alt | escape }}
+                  </a>
+                {% endif %}
+
+                <div class="search-result__content">
+                  <h3 class="search-result__title"><a href="{{ result.url }}">{{ result.title | escape }}</a></h3>
+                  {% if result.object_type == 'product' %}
+                    <p class="search-result__price">{{ result.price | money }}</p>
+                    {% if result.description != blank %}
+                      <p>{{ result.description | strip_html | truncatewords: 24 }}</p>
+                    {% endif %}
+                  {% elsif result.object_type == 'article' and result.excerpt != blank %}
+                    <p>{{ result.excerpt | strip_html | truncatewords: 24 }}</p>
+                  {% elsif result.content != blank %}
+                    <p>{{ result.content | strip_html | truncatewords: 24 }}</p>
+                  {% endif %}
+                </div>
+              </article>
+            {% endfor %}
+          </div>
+
+          {% if paginate.pages > 1 %}
+            <nav class="search-page__pagination" aria-label="{{ 'sections.main_search.title' | t }}">
+              {% if paginate.previous %}
+                <a href="{{ paginate.previous.url }}">{{ 'general.pagination.previous' | t }}</a>
+              {% endif %}
+              {% if paginate.next %}
+                <a href="{{ paginate.next.url }}">{{ 'general.pagination.next' | t }}</a>
+              {% endif %}
+            </nav>
+          {% endif %}
+        {% endpaginate %}
+      {% else %}
+        <p class="search-page__empty">{{ 'sections.main_search.no_results' | t }}</p>
+      {% endif %}
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main search",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Main search"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+  .search-page__form {
+    display: grid;
+    gap: 0.5rem;
+    max-width: 42rem;
+  }
+
+  .search-page__controls {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .search-page__input {
+    flex: 1;
+    min-width: 0;
+    min-height: 46px;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-button);
+    background: var(--color-surface);
+    color: var(--color-text);
+  }
+
+  .search-page__subheading {
+    margin: 2rem 0 0.5rem;
+    font-family: var(--font-heading-family);
+    color: var(--color-text);
+  }
+
+  .search-page__count,
+  .search-result__price {
+    color: var(--color-text);
+  }
+
+  .search-page__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .search-result {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .search-result__media {
+    display: block;
+    background: var(--color-card-background);
+  }
+
+  .search-result__media img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+
+  .search-result__content {
+    padding: 1rem;
+  }
+
+  .search-result__title {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .search-result__title a {
+    color: var(--color-text);
+  }
+
+  .search-page__pagination {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+  }
+
+  @media screen and (max-width: 767px) {
+    .search-page__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (max-width: 479px) {
+    .search-page__controls {
+      flex-direction: column;
+    }
+
+    .search-page__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+{% endstylesheet %}

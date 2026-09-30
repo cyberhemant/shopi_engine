@@ -1,0 +1,92 @@
+<article class="section article-page">
+  <div class="page-width article-page__content">
+    <header class="article-page__header">
+      <p class="article-page__meta">
+        <time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+          {{ article.published_at | date: format: 'month_day_year' }}
+        </time>
+        {% if article.author != blank %}
+          <span>{{ 'sections.main_article.by_author' | t: author: article.author }}</span>
+        {% endif %}
+      </p>
+      <h1 class="section__heading">{{ article.title | escape }}</h1>
+    </header>
+
+    {% if article.image != blank %}
+      <div class="article-page__media">
+        {{ article.image | image_url: width: 1600 | image_tag: widths: '480, 720, 960, 1200, 1600', sizes: '(min-width: 900px) 52rem, 100vw', loading: 'eager', alt: article.image.alt | escape }}
+      </div>
+    {% endif %}
+
+    <div class="article-page__body rte">
+      {{ article.content }}
+    </div>
+
+    <a class="article-page__back" href="{{ blog.url }}">
+      {{ 'sections.main_article.back_to_blog' | t: title: blog.title }}
+    </a>
+  </div>
+</article>
+
+{% schema %}
+{
+  "name": "Main article",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Main article"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+  .article-page__content {
+    max-width: min(var(--page-width), 58rem);
+  }
+
+  .article-page__header {
+    margin-bottom: 2rem;
+  }
+
+  .article-page__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 0 0 0.75rem;
+    color: var(--color-text);
+    opacity: 0.75;
+  }
+
+  .article-page__header .section__heading {
+    margin-bottom: 0;
+  }
+
+  .article-page__media {
+    margin-bottom: 2rem;
+    overflow: hidden;
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius-card);
+    background: var(--color-card-background);
+  }
+
+  .article-page__media img {
+    width: 100%;
+    max-height: 42rem;
+    object-fit: cover;
+  }
+
+  .article-page__body {
+    color: var(--color-text);
+  }
+
+  .article-page__body a,
+  .article-page__back {
+    color: var(--color-accent);
+  }
+
+  .article-page__back {
+    display: inline-block;
+    margin-top: 2rem;
+  }
+{% endstylesheet %}

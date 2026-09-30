@@ -1,0 +1,64 @@
+<section class="section customer-page">
+  <div class="page-width customer-page__content">
+    <h1 class="section__heading">{{ 'customer.activate_account.title' | t }}</h1>
+
+    {% form 'activate_customer_password', class: 'customer-form' %}
+      {{ form.errors | default_errors }}
+      <div class="customer-form__field">
+        <label for="ActivatePassword">{{ 'customer.activate_account.password' | t }}</label>
+        <input id="ActivatePassword" type="password" name="customer[password]" autocomplete="new-password" required>
+      </div>
+      <div class="customer-form__field">
+        <label for="ActivatePasswordConfirm">{{ 'customer.activate_account.confirm_password' | t }}</label>
+        <input id="ActivatePasswordConfirm" type="password" name="customer[password_confirmation]" autocomplete="new-password" required>
+      </div>
+      <button type="submit" class="button">{{ 'customer.activate_account.submit' | t }}</button>
+    {% endform %}
+
+    {% form 'decline_customer', class: 'customer-page__decline' %}
+      <button type="submit" class="button button--secondary">{{ 'customer.activate_account.decline' | t }}</button>
+    {% endform %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Customer activate account",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Customer activate account"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+  .customer-page__content {
+    max-width: min(var(--page-width), 36rem);
+  }
+
+  .customer-form {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .customer-form__field {
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  .customer-form__field input {
+    width: 100%;
+    min-height: 46px;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-button);
+    background: var(--color-surface);
+    color: var(--color-text);
+  }
+
+  .customer-page__decline {
+    margin-top: 1rem;
+  }
+{% endstylesheet %}

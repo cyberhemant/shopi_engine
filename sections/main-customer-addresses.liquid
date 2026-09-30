@@ -1,0 +1,120 @@
+<section class="section customer-page">
+  <div class="page-width customer-page__content">
+    <h1 class="section__heading">{{ 'customer.addresses.title' | t }}</h1>
+    <p><a href="{{ routes.account_url }}">{{ 'customer.addresses.back_to_account' | t }}</a></p>
+
+    {% for address in customer.addresses %}
+      <article class="card address-card">
+        <h2>{{ address.first_name | escape }} {{ address.last_name | escape }}</h2>
+        <address>
+          {{ address | format_address }}
+        </address>
+        <details class="address-card__edit">
+          <summary>{{ 'customer.addresses.edit' | t }}</summary>
+          {% form 'customer_address', address, class: 'customer-form' %}
+            {{ form.errors | default_errors }}
+            {% assign edit_form_id = 'EditAddress' | append: address.id %}
+            {% render 'customer-address-fields', address: address, form_id: edit_form_id %}
+            <label class="customer-form__checkbox">
+              {{ form.set_as_default_checkbox }}
+              {{ 'customer.addresses.default' | t }}
+            </label>
+            <button type="submit" class="button">{{ 'customer.addresses.save' | t }}</button>
+          {% endform %}
+          <form method="post" action="{{ routes.account_addresses_url }}/{{ address.id }}" class="address-card__delete">
+            <input type="hidden" name="_method" value="delete">
+            <button type="submit" class="button button--secondary">{{ 'customer.addresses.delete' | t }}</button>
+          </form>
+        </details>
+      </article>
+    {% endfor %}
+
+    <details class="address-card address-card--new">
+      <summary>{{ 'customer.addresses.add_new' | t }}</summary>
+      {% form 'customer_address', customer.new_address, class: 'customer-form' %}
+        {{ form.errors | default_errors }}
+        {% render 'customer-address-fields', address: customer.new_address, form_id: 'NewAddress' %}
+        <label class="customer-form__checkbox">
+          {{ form.set_as_default_checkbox }}
+          {{ 'customer.addresses.default' | t }}
+        </label>
+        <button type="submit" class="button">{{ 'customer.addresses.save' | t }}</button>
+      {% endform %}
+    </details>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Customer addresses",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Customer addresses"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+  .customer-page__content {
+    max-width: min(var(--page-width), 52rem);
+  }
+
+  .customer-page__content > p a {
+    color: var(--color-accent);
+  }
+
+  .address-card {
+    margin: 1rem 0;
+  }
+
+  .address-card h2 {
+    margin-top: 0;
+    color: var(--color-text);
+    font-family: var(--font-heading-family);
+  }
+
+  .address-card address {
+    color: var(--color-text);
+    font-style: normal;
+  }
+
+  .address-card__edit,
+  .address-card--new {
+    margin-top: 1rem;
+    color: var(--color-text);
+  }
+
+  .customer-form {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .customer-form__field {
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  .customer-form__field input,
+  .customer-form__field select {
+    width: 100%;
+    min-height: 46px;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-button);
+    background: var(--color-surface);
+    color: var(--color-text);
+  }
+
+  .customer-form__checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .address-card__delete {
+    margin-top: 0.75rem;
+  }
+{% endstylesheet %}

@@ -1,0 +1,70 @@
+<section class="section customer-page">
+  <div class="page-width customer-page__content">
+    <h1 class="section__heading">{{ 'customer.register.title' | t }}</h1>
+
+    {% form 'create_customer', class: 'customer-form' %}
+      {{ form.errors | default_errors }}
+      <div class="customer-form__field">
+        <label for="RegisterFirstName">{{ 'customer.register.first_name' | t }}</label>
+        <input id="RegisterFirstName" type="text" name="customer[first_name]" autocomplete="given-name">
+      </div>
+      <div class="customer-form__field">
+        <label for="RegisterLastName">{{ 'customer.register.last_name' | t }}</label>
+        <input id="RegisterLastName" type="text" name="customer[last_name]" autocomplete="family-name">
+      </div>
+      <div class="customer-form__field">
+        <label for="RegisterEmail">{{ 'customer.register.email' | t }}</label>
+        <input id="RegisterEmail" type="email" name="customer[email]" autocomplete="email" required>
+      </div>
+      <div class="customer-form__field">
+        <label for="RegisterPassword">{{ 'customer.register.password' | t }}</label>
+        <input id="RegisterPassword" type="password" name="customer[password]" autocomplete="new-password" required>
+      </div>
+      <button type="submit" class="button">{{ 'customer.register.submit' | t }}</button>
+    {% endform %}
+
+    <p>{{ 'customer.register.already_customer' | t }} <a href="{{ routes.account_login_url }}">{{ 'customer.register.sign_in' | t }}</a></p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Customer register",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Customer register"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+  .customer-page__content {
+    max-width: min(var(--page-width), 36rem);
+  }
+
+  .customer-form {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .customer-form__field {
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  .customer-form__field input {
+    width: 100%;
+    min-height: 46px;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-button);
+    background: var(--color-surface);
+    color: var(--color-text);
+  }
+
+  .customer-page__content > p a {
+    color: var(--color-accent);
+  }
+{% endstylesheet %}

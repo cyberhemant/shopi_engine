@@ -1,0 +1,99 @@
+<section class="section collections-list-page">
+  <div class="page-width">
+    <h1 class="section__heading">{{ 'sections.main_list_collections.title' | t }}</h1>
+
+    {% if collections.size > 0 %}
+      {% paginate collections by 12 %}
+        <div class="collections-list-page__grid">
+          {% for collection in collections %}
+            <article class="card collection-tile">
+              <a class="collection-tile__media" href="{{ collection.url }}">
+                {% if collection.featured_image != blank %}
+                  {{ collection.featured_image | image_url: width: 900 | image_tag: widths: '320, 480, 640, 900', sizes: '(min-width: 768px) 33vw, 100vw', loading: 'lazy', alt: collection.featured_image.alt | escape }}
+                {% elsif collection.products.first.featured_image != blank %}
+                  {{ collection.products.first.featured_image | image_url: width: 900 | image_tag: widths: '320, 480, 640, 900', sizes: '(min-width: 768px) 33vw, 100vw', loading: 'lazy', alt: collection.title | escape }}
+                {% endif %}
+                <span class="collection-tile__title">{{ collection.title | escape }}</span>
+              </a>
+            </article>
+          {% endfor %}
+        </div>
+
+        {% if paginate.pages > 1 %}
+          <nav class="collections-list-page__pagination" aria-label="{{ 'sections.main_list_collections.title' | t }}">
+            {% if paginate.previous %}
+              <a href="{{ paginate.previous.url }}">{{ 'general.pagination.previous' | t }}</a>
+            {% endif %}
+            {% if paginate.next %}
+              <a href="{{ paginate.next.url }}">{{ 'general.pagination.next' | t }}</a>
+            {% endif %}
+          </nav>
+        {% endif %}
+      {% endpaginate %}
+    {% else %}
+      <p>{{ 'sections.main_list_collections.empty' | t }}</p>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main list collections",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Main list collections"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+  .collections-list-page__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .collection-tile {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .collection-tile__media {
+    display: grid;
+    color: var(--color-text);
+    text-decoration: none;
+    background: var(--color-card-background);
+  }
+
+  .collection-tile__media img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .collection-tile__title {
+    padding: 1rem;
+    font-family: var(--font-heading-family);
+    font-size: 1.2rem;
+  }
+
+  .collections-list-page__pagination {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+  }
+
+  @media screen and (max-width: 767px) {
+    .collections-list-page__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (max-width: 479px) {
+    .collections-list-page__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+{% endstylesheet %}

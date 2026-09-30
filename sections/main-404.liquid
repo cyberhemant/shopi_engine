@@ -1,0 +1,35 @@
+<section class="section not-found-page">
+  <div class="page-width not-found-page__content">
+    <p class="section__eyebrow">404</p>
+    <h1 class="section__heading">{{ 'sections.main_404.title' | t }}</h1>
+    <p>{{ 'sections.main_404.message' | t }}</p>
+    <a class="button" href="{{ routes.root_url }}">{{ 'sections.main_404.back_to_home' | t }}</a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Main 404",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Main 404"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+  .not-found-page__content {
+    max-width: min(var(--page-width), 52rem);
+  }
+
+  .not-found-page__content .section__heading {
+    color: var(--color-text);
+  }
+
+  .not-found-page__content > p:not(.section__eyebrow) {
+    margin-bottom: 1.5rem;
+    color: var(--color-text);
+  }
+{% endstylesheet %}

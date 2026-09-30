@@ -9,14 +9,14 @@
     "color_button_label": "#FFFFFF",
     "color_card_background": "#FFFFFF",
     "color_card_border": "#E7E7E1",
-    "type_body_font": "helvetica_n4",
-    "type_heading_font": "helvetica_n7",
+    "type_body_font": "assistant_n4",
+    "type_heading_font": "assistant_n7",
     "type_body_scale": 100,
     "type_heading_scale": 110,
     "page_width": 1200,
     "section_spacing": 80,
     "content_padding": 24,
-    "button_radius": 999,
+    "button_radius": 12,
     "card_radius": 18
   }
 }
