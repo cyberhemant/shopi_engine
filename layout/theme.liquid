@@ -20,8 +20,11 @@
   </head>
   <body class="template-{{ template.name | handle }}">
     <a class="skip-link" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+    {% section 'announcement-bar' %}
+    {% section 'header' %}
     <main id="MainContent" class="main-content" role="main">
       {{ content_for_layout }}
     </main>
+    {% section 'footer' %}
   </body>
 </html>

@@ -50,9 +50,9 @@ Quality: WCAG AA, performance, theme editor support, theme check clean, app bloc
 - Ask before renaming setting IDs (breaks merchants' saved data).
 
 ## Progress log (update as you go)
-- [ ] Project initialized, baseline commit made
-- [ ] Design token system
-- [ ] Header and footer
+- [x] Project initialized, baseline commit made
+- [x] Design token system
+- [x] Header and footer
 - [ ] Core sections
 - [ ] Product, collection, cart
 - [ ] Remaining templates

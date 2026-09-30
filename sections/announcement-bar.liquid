@@ -1,0 +1,43 @@
+{% if section.settings.text != blank %}
+  <div class="announcement-bar">
+    <div class="page-width announcement-bar__inner">
+      <p>{{ section.settings.text }}</p>
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Announcement text",
+      "default": "Free shipping on orders over $75"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement bar"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+  .announcement-bar {
+    background: var(--color-accent);
+    color: var(--color-button-label);
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  .announcement-bar__inner {
+    padding: 0.7rem 0;
+  }
+
+  .announcement-bar p {
+    margin: 0;
+  }
+{% endstylesheet %}
