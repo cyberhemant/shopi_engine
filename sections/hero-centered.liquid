@@ -1,0 +1,147 @@
+<section class="section hero-centered">
+  <div class="page-width hero-centered__inner">
+    {% if section.settings.image != blank %}
+      <div class="hero-centered__media">
+        {{ section.settings.image | image_url: width: 1600 | image_tag: widths: '320, 480, 640, 800, 1000, 1200, 1600', sizes: '100vw', loading: 'eager', alt: section.settings.image.alt | escape }}
+      </div>
+    {% endif %}
+
+    <div class="hero-centered__content">
+      {% if section.settings.eyebrow != blank %}
+        <p class="section__eyebrow">{{ section.settings.eyebrow }}</p>
+      {% endif %}
+
+      <h1 class="section__heading">{{ section.settings.heading }}</h1>
+
+      {% if section.settings.text != blank %}
+        <p class="hero-centered__text">{{ section.settings.text }}</p>
+      {% endif %}
+
+      <div class="hero-centered__actions">
+        {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+          <a class="button" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+        {% endif %}
+
+        {% if section.settings.secondary_button_label != blank and section.settings.secondary_button_link != blank %}
+          <a class="button button--secondary" href="{{ section.settings.secondary_button_link }}">{{ section.settings.secondary_button_label }}</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Centered hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "New season"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Modern essentials for everyday living"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Bring thoughtful design into your daily routine with timeless pieces built to last."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_label",
+      "label": "Secondary button label",
+      "default": "Explore lookbook"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Centered hero"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+  .hero-centered__inner {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-content);
+  }
+
+  .hero-centered__media {
+    width: min(100%, var(--page-width));
+    overflow: hidden;
+    border: 1px solid var(--color-card-border);
+    border-radius: var(--radius-card);
+    background: var(--color-card-background);
+  }
+
+  .hero-centered__media img {
+    width: 100%;
+    aspect-ratio: 16 / 8;
+    object-fit: cover;
+  }
+
+  .hero-centered__content {
+    width: min(100%, var(--page-width));
+    display: grid;
+    justify-items: center;
+    gap: var(--space-content);
+    text-align: center;
+  }
+
+  .hero-centered__content .section__heading {
+    margin: 0;
+  }
+
+  .hero-centered__text {
+    max-width: min(100%, var(--page-width));
+    margin: 0;
+    color: var(--color-text);
+  }
+
+  .hero-centered__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-content);
+  }
+
+  @media screen and (max-width: 479px) {
+    .hero-centered__inner {
+      gap: var(--space-content);
+    }
+
+    .hero-centered__actions {
+      width: 100%;
+      flex-direction: column;
+    }
+  }
+{% endstylesheet %}

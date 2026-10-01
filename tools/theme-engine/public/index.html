@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <title>Theme settings | Shopi Engine</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="wordmark" href="/" aria-label="Shopi Engine settings home">
+        <span class="wordmark__mark">S</span>
+        <span>SHOPI <span class="wordmark__light">ENGINE</span></span>
+      </a>
+      <div class="topbar__right">
+        <span class="environment"><span class="environment__dot"></span>LOCAL SETTINGS</span>
+        <a class="preview-link" href="http://127.0.0.1:9294/" target="_blank" rel="noreferrer">Open storefront <span aria-hidden="true">↗</span></a>
+      </div>
+    </header>
+
+    <div class="app-shell">
+      <aside class="sidebar">
+        <p class="sidebar__label">THEME CONFIGURATION</p>
+        <nav id="group-nav" aria-label="Theme setting groups"></nav>
+        <div class="sidebar__footer">
+          <span class="sidebar__footer-mark" aria-hidden="true">SE</span>
+          <span>Theme engine<br><span class="muted">Local workspace</span></span>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <div class="page-heading">
+          <div>
+            <p class="eyebrow">DESIGN SYSTEM <span>/</span> GLOBAL SETTINGS</p>
+            <h1>Theme parameters</h1>
+            <p class="page-heading__detail"><span id="setting-count">Loading settings</span></p>
+          </div>
+          <div class="page-heading__actions">
+            <p id="save-status" class="save-status" role="status" aria-live="polite">Connecting…</p>
+            <button id="reset-button" class="reset-button" type="button" disabled>Reset defaults</button>
+          </div>
+        </div>
+
+        <section class="recipe-workshop" aria-labelledby="recipe-heading">
+          <div class="recipe-workshop__heading">
+            <div>
+              <p class="eyebrow">RECIPE BUILDER</p>
+              <h2 id="recipe-heading">Theme recipes</h2>
+            </div>
+            <span id="recipe-count" class="settings-group__count"></span>
+          </div>
+          <div id="recipe-list" class="recipe-list">
+            <p class="loading-state">Loading recipes…</p>
+          </div>
+          <p id="recipe-status" class="recipe-status" role="status" aria-live="polite"></p>
+        </section>
+
+        <div id="settings-groups" class="settings-groups">
+          <p class="loading-state">Loading theme settings…</p>
+        </div>
+
+        <footer class="page-footer">
+          <span>SHOPI ENGINE <span class="detail-separator">/</span> THEME CONTROLS</span>
+          <span>LOCAL WORKSPACE</span>
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>

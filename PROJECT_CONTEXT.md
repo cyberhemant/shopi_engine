@@ -58,4 +58,6 @@ Quality: WCAG AA, performance, theme editor support, theme check clean, app bloc
 - [x] Shopify Theme Check: no offenses
 - [x] Search, page, blog, article, collection list, and 404 templates
 - [x] Password and customer account templates
+- [x] Local global-settings control panel with dev-theme sync
+- [x] Recipe panel: select split or centered homepage hero and build a checked ZIP
 - [ ] Accessibility, performance, localization

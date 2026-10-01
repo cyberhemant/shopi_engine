@@ -1,11 +1,11 @@
 {
   "current": {
-    "color_background": "#F5F5F2",
+    "color_background": "#A0EEE5",
     "color_text": "#1A1A1A",
     "color_surface": "#FFFFFF",
     "color_border": "#D9D9D4",
-    "color_accent": "#4C5BFF",
-    "color_button_background": "#1A1A1A",
+    "color_accent": "#FF4DB5",
+    "color_button_background": "#248434",
     "color_button_label": "#FFFFFF",
     "color_card_background": "#FFFFFF",
     "color_card_border": "#E7E7E1",

@@ -1,4 +1,6 @@
 CLAUDE.md
 PROJECT_CONTEXT.md
+.theme-check.yml
 docs/
 .git/
+dist/
